@@ -42,7 +42,7 @@ const HeroSection = () => {
           </div>
           <div className="md:w-1/3 mt-8 md:mt-0 flex justify-center">
             <img
-              src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dGVjaHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=300&q=80" 
+              src="https://i.postimg.cc/rmKs2TKP/me.png" 
               alt="Samay Susumanth"
               className="rounded-full w-48 h-48 sm:w-60 sm:h-60 lg:w-72 lg:h-72 object-cover border-4 border-primary shadow-xl"
             />
