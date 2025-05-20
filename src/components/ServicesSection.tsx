@@ -12,21 +12,21 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <Section id="services" bgColor="bg-white" textColor="text-slate-800">
-      <h2 className="text-3xl md:text-4xl font-bold text-primary-navy mb-12 text-center">Web Design & Development Services</h2>
+    <Section id="services" bgColor="bg-background" textColor="text-foreground">
+      <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center">Web Design & Development Services</h2>
       <div className="max-w-3xl mx-auto">
-        <p className="text-lg text-center text-slate-700 mb-10">
+        <p className="text-lg text-center text-muted-foreground mb-10">
           I offer professional web design and development services to bring your ideas to life. My focus is on creating modern, responsive, and user-friendly websites tailored to your specific needs.
         </p>
         <div className="grid md:grid-cols-2 gap-6">
           {services.map((service, index) => (
-            <div key={index} className="flex items-start p-4 bg-slate-50 rounded-lg shadow">
-              <Check className="text-secondary-accent w-6 h-6 mr-3 mt-1 flex-shrink-0" />
-              <p className="text-slate-700">{service}</p>
+            <div key={index} className="flex items-start p-4 bg-card rounded-lg shadow border border-border">
+              <Check className="text-primary w-6 h-6 mr-3 mt-1 flex-shrink-0" />
+              <p className="text-muted-foreground">{service}</p>
             </div>
           ))}
         </div>
-         <p className="text-lg text-center text-slate-700 mt-10">
+         <p className="text-lg text-center text-muted-foreground mt-10">
           Whether you need a brand new website, a redesign, or specific feature development, I'm here to help you achieve your online goals. Let's build something great together!
         </p>
       </div>

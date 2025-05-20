@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button'; // Assuming you have a shadcn button
+import { Button } from '@/components/ui/button';
 
 const navLinks = [
   { href: '#home', label: 'Home' },
@@ -26,7 +26,8 @@ const Navbar = () => {
       navLinks.forEach(link => {
         const section = document.getElementById(link.href.substring(1));
         if (section) {
-          const sectionTop = section.offsetTop - 100; // Adjusted for navbar height
+          const navbarHeight = document.querySelector('nav')?.offsetHeight || 72; // Dynamic navbar height
+          const sectionTop = section.offsetTop - navbarHeight - 20; // Adjusted for navbar height + offset
           const sectionBottom = sectionTop + section.offsetHeight;
           if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
             currentSection = link.href.substring(1);
@@ -57,13 +58,13 @@ const Navbar = () => {
         behavior: 'smooth',
       });
     }
-    if (isOpen) setIsOpen(false); // Close menu on mobile after click
+    if (isOpen) setIsOpen(false);
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg py-4' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-card shadow-lg py-4' : 'bg-transparent py-6'}`}>
       <div className="content-max-width px-4 md:px-6 flex justify-between items-center">
-        <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className={`text-2xl font-bold font-roboto transition-colors ${isScrolled ? 'text-primary-navy' : 'text-white'}`}>
+        <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className={`text-2xl font-bold font-roboto transition-colors text-foreground hover:text-primary`}>
           Samay S.
         </a>
         <div className="hidden md:flex space-x-2 lg:space-x-4 items-center">
@@ -72,8 +73,8 @@ const Navbar = () => {
               key={link.label}
               href={link.href}
               onClick={(e) => handleLinkClick(e, link.href)}
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors hover:text-secondary-accent
-                ${activeSection === link.href.substring(1) ? (isScrolled ? 'text-secondary-accent font-semibold' : 'text-secondary-accent font-semibold') : (isScrolled ? 'text-primary-navy' : 'text-slate-100')}
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors hover:text-primary
+                ${activeSection === link.href.substring(1) ? 'text-primary font-semibold' : 'text-muted-foreground'}
               `}
             >
               {link.label}
@@ -81,29 +82,30 @@ const Navbar = () => {
           ))}
           <Button 
             asChild 
-            className="bg-secondary-accent hover:bg-opacity-80 text-primary-navy px-4 py-2 text-sm"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}
+            variant="default" // This will use the new primary (red) color
+            size="sm"
+            className="text-primary-foreground"
           >
             <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')}>Contact Me</a>
           </Button>
         </div>
         <div className="md:hidden">
-          <button onClick={toggleMenu} className={`focus:outline-none ${isScrolled ? 'text-primary-navy' : 'text-white'}`}>
+          <button onClick={toggleMenu} className={`focus:outline-none text-foreground`}>
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </div>
       {/* Mobile Menu */}
       {isOpen && (
-        <div className={`md:hidden absolute top-full left-0 right-0 shadow-xl pb-4 transition-all duration-300 ease-in-out ${isScrolled ? 'bg-white' : 'bg-primary-navy/95 backdrop-blur-md'}`}>
+        <div className={`md:hidden absolute top-full left-0 right-0 shadow-xl pb-4 transition-all duration-300 ease-in-out ${isScrolled ? 'bg-card' : 'bg-background/95 backdrop-blur-md'}`}>
           <div className="flex flex-col items-center space-y-2 px-4 pt-4">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
-                className={`block w-full text-center px-3 py-3 rounded-md text-base font-medium transition-colors hover:bg-secondary-accent hover:text-primary-navy
-                  ${activeSection === link.href.substring(1) ? (isScrolled ? 'bg-secondary-accent text-primary-navy' : 'bg-secondary-accent/80 text-white') : (isScrolled ? 'text-primary-navy' : 'text-slate-100')}
+                className={`block w-full text-center px-3 py-3 rounded-md text-base font-medium transition-colors hover:bg-primary hover:text-primary-foreground
+                  ${activeSection === link.href.substring(1) ? 'bg-primary text-primary-foreground' : 'text-muted-foreground'}
                 `}
               >
                 {link.label}
@@ -111,11 +113,8 @@ const Navbar = () => {
             ))}
             <Button 
               asChild 
-              className="w-full mt-2 bg-secondary-accent hover:bg-opacity-80 text-primary-navy"
-              onClick={() => {
-                document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'});
-                if (isOpen) setIsOpen(false);
-              }}
+              variant="default"
+              className="w-full mt-2 text-primary-foreground"
             >
                <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')}>Contact Me</a>
             </Button>

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Section from './Section';
-import { Badge } from '@/components/ui/badge'; // Assuming shadcn badge
+import { Badge } from '@/components/ui/badge';
 
 interface SkillCategory {
   title: string;
@@ -33,15 +33,15 @@ const skillData: SkillCategory[] = [
 
 const SkillsSection = () => {
   return (
-    <Section id="skills" bgColor="bg-white" textColor="text-slate-800">
-      <h2 className="text-3xl md:text-4xl font-bold text-primary-navy mb-12 text-center">My Skills</h2>
+    <Section id="skills" bgColor="bg-card" textColor="text-foreground"> {/* Use card bg for slight contrast */}
+      <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center">My Skills</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {skillData.map((category) => (
-          <div key={category.title} className="bg-slate-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-            <h3 className="text-xl font-semibold text-primary-navy-light mb-4">{category.title}</h3>
+          <div key={category.title} className="bg-background p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-border">
+            <h3 className="text-xl font-semibold text-primary mb-4">{category.title}</h3>
             <div className="flex flex-wrap gap-2">
               {category.skills.map((skill) => (
-                <Badge key={skill} variant="secondary" className="bg-secondary-accent text-primary-navy px-3 py-1 text-sm">
+                <Badge key={skill} variant="default" className="bg-primary text-primary-foreground hover:bg-primary/90 px-3 py-1 text-sm">
                   {skill}
                 </Badge>
               ))}

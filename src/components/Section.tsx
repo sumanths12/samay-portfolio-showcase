@@ -5,11 +5,17 @@ interface SectionProps {
   id: string;
   children: React.ReactNode;
   className?: string;
-  bgColor?: string; // e.g., 'bg-white', 'bg-slate-100'
-  textColor?: string; // e.g., 'text-primary-navy', 'text-slate-700'
+  bgColor?: string; 
+  textColor?: string; 
 }
 
-const Section: React.FC<SectionProps> = ({ id, children, className = '', bgColor = 'bg-white', textColor = 'text-slate-800' }) => {
+const Section: React.FC<SectionProps> = ({ 
+  id, 
+  children, 
+  className = '', 
+  bgColor = 'bg-background', // Default to main dark background
+  textColor = 'text-foreground' // Default to light foreground
+}) => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -34,6 +40,7 @@ const Section: React.FC<SectionProps> = ({ id, children, className = '', bgColor
 
     return () => {
       if (sectionRef.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         observer.unobserve(sectionRef.current);
       }
     };

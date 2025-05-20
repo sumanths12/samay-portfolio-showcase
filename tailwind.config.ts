@@ -2,7 +2,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
-	darkMode: ["class"],
+	darkMode: ["class"], // Keep darkMode selector if you plan to support light/dark toggle later
 	content: [
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
@@ -29,30 +29,24 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
-				primary: {
-					DEFAULT: 'hsl(var(--primary))', // Keep this for shadcn components
-					foreground: 'hsl(var(--primary-foreground))', // Keep this
-          // Custom primary colors
-          navy: '#1d3557', // A navy blue
-          'navy-light': '#457b9d',
+				primary: { // Red accent
+					DEFAULT: 'hsl(var(--primary))',
+					foreground: 'hsl(var(--primary-foreground))',
 				},
-				secondary: {
-					DEFAULT: 'hsl(var(--secondary))', // Keep this
-					foreground: 'hsl(var(--secondary-foreground))', // Keep this
-          // Custom secondary/accent colors
-          accent: '#a8dadc', // A light teal/blue
-          'accent-dark': '#1d3557', // Can be same as primary.navy or a darker teal
+				secondary: { // A muted color or darker accent
+					DEFAULT: 'hsl(var(--secondary))',
+					foreground: 'hsl(var(--secondary-foreground))',
 				},
 				destructive: {
-					DEFAULT: 'hsl(var(--destructive))',
+					DEFAULT: 'hsl(var(--destructive))', // Typically red, aligns with our new primary
 					foreground: 'hsl(var(--destructive-foreground))'
 				},
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
 					foreground: 'hsl(var(--muted-foreground))'
 				},
-				accent_custom: { // Renamed from accent to avoid conflict with shadcn
-					DEFAULT: 'hsl(var(--accent))',
+				accent_custom: { // Renamed to accent_theme to avoid shadcn conflicts
+					DEFAULT: 'hsl(var(--accent))', // This will be our red accent
 					foreground: 'hsl(var(--accent-foreground))'
 				},
 				popover: {
@@ -63,16 +57,9 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+        // Remove old custom colors like primary-navy if not used, or remap them
+        // For example, if we had a 'theme-dark-bg', it would be defined here.
+        // For now, we rely on the HSL variables.
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

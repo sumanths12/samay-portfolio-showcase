@@ -5,70 +5,53 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%; /* White */
-    --foreground: 222.2 84% 4.9%; /* Dark Blue/Black */
+    /* Dark Theme Inspired by Image (Red Accents) */
+    --background: 220 13% 10%; /* Dark Grayish Blue: #181A1D */
+    --foreground: 210 20% 90%; /* Light Gray: #E0E3E8 */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 13% 13%; /* Slightly Lighter Dark Grayish Blue: #1D2025 */
+    --card-foreground: 210 20% 90%; /* Light Gray */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 13% 13%; /* Dark Popover */
+    --popover-foreground: 210 20% 90%; /* Light Text */
 
-    /* Primary: Navy Blue from tailwind.config.ts */
-    --primary: 217 50% 22%; /* Equivalent to #1d3557 */
-    --primary-foreground: 0 0% 98%; /* White */
+    /* Primary: Red Accent */
+    --primary: 0 72% 51%; /* Bright Red: #E53E3E (Tailwind red-500) */
+    --primary-foreground: 0 0% 100%; /* White */
 
-    /* Secondary/Muted: Light Gray */
-    --secondary: 210 40% 96.1%; /* Tailwind's slate-100 */
-    --secondary-foreground: 222.2 47.4% 11.2%; /* Tailwind's slate-800 */
+    /* Secondary: Muted Dark Gray or Darker Red */
+    --secondary: 220 10% 20%; /* Darker Gray: #2C313A */
+    --secondary-foreground: 210 20% 85%; /* Slightly darker light gray for contrast */
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%; /* Tailwind's slate-500 */
+    --muted: 220 10% 15%; /* Muted Dark Background: #22262B */
+    --muted-foreground: 210 15% 65%; /* Muted Text */
 
-    /* Accent: Light Teal/Blue from tailwind.config.ts */
-    --accent: 182 45% 76%; /* Equivalent to #a8dadc */
-    --accent-foreground: 217 50% 22%; /* Navy Blue for text on accent */
+    /* Accent: Red (same as primary) */
+    --accent: 0 72% 51%; /* Bright Red */
+    --accent-foreground: 0 0% 100%; /* White */
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 60% 50%; /* Standard Destructive Red */
+    --destructive-foreground: 0 0% 100%; /* White */
 
-    --border: 214.3 31.8% 91.4%; /* Tailwind's slate-200 */
-    --input: 214.3 31.8% 91.4%;
-    --ring: 217 50% 22%; /* Primary Navy */
+    --border: 220 10% 25%; /* Border Color: #383E47 */
+    --input: 220 10% 20%; /* Input Background */
+    --ring: 0 72% 51%; /* Ring color (Red accent) */
 
     --radius: 0.5rem;
   }
 
-  .dark {
-    /* Define dark mode variables if needed in the future, for now, we focus on light mode */
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 182 45% 30%; /* Darker accent for dark mode */
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 182 45% 76%; /* Light accent for ring in dark mode */
+  /* 
+    If you want to support a toggleable dark mode later, 
+    you would define light mode variables here or in a .light class.
+    For now, the root is dark.
+  */
+  /* Example for a .light class if needed later:
+  .light {
+    --background: 0 0% 100%; 
+    --foreground: 222.2 84% 4.9%;
+    ... (all other light mode variables) ...
   }
+  */
 }
 
 @layer base {
@@ -87,7 +70,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-roboto font-bold;
+    @apply font-roboto font-bold text-foreground; /* Ensure headings use foreground color */
   }
 }
 
