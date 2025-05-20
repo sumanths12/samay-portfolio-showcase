@@ -33,7 +33,7 @@ const AboutSection = () => {
             <div>
               <h4 className="text-lg font-medium text-foreground">Bachelor of Technology (B.Tech) in Computer Science</h4>
               <p className="text-sm text-muted-foreground">Santhiram Engineering College,Nandyal                       -    8.03</p>
-              <p className="text-xs text-slate-500">2019 – 2023</p>
+              <p className="text-xs text-slate-500">2021 – 2024</p>
             </div>
             {/* Add more education if needed */}
           </div>
