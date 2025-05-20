@@ -1,12 +1,9 @@
-
 import React from 'react';
 import Section from './Section';
 import { Button } from '@/components/ui/button';
 import { Download } from 'lucide-react';
-
 const AboutSection = () => {
-  return (
-    <Section id="about" bgColor="bg-card" textColor="text-foreground"> {/* Use card bg for slight contrast */}
+  return <Section id="about" bgColor="bg-card" textColor="text-foreground"> {/* Use card bg for slight contrast */}
       <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center">About Me</h2>
       <div className="grid md:grid-cols-3 gap-8 items-start">
         <div className="md:col-span-2 space-y-6">
@@ -22,11 +19,9 @@ const AboutSection = () => {
             I believe in the power of collaboration, continuous learning, and a user-centric approach to development. Whether it's architecting robust back-end systems or crafting intuitive user interfaces, my goal is to deliver high-quality software that meets user needs and exceeds expectations.
           </p>
           <div className="mt-8">
-            <Button 
-              variant="outline" 
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-              // onClick={() => window.open('/path-to-resume.pdf', '_blank')} // Uncomment and set path when resume is available
-            >
+            <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+          // onClick={() => window.open('/path-to-resume.pdf', '_blank')} // Uncomment and set path when resume is available
+          >
               <Download size={18} className="mr-2" />
               Download Resume (Soon)
             </Button>
@@ -37,15 +32,13 @@ const AboutSection = () => {
           <div className="space-y-4">
             <div>
               <h4 className="text-lg font-medium text-foreground">Bachelor of Technology (B.Tech) in Computer Science</h4>
-              <p className="text-sm text-muted-foreground">Sri Venkateswara University College of Engineering, Tirupati</p>
+              <p className="text-sm text-muted-foreground">Santhiram Engineering College,Nandyal                       -    8.03</p>
               <p className="text-xs text-slate-500">2019 – 2023</p>
             </div>
             {/* Add more education if needed */}
           </div>
         </div>
       </div>
-    </Section>
-  );
+    </Section>;
 };
-
 export default AboutSection;
