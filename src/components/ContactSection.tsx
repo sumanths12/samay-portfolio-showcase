@@ -5,6 +5,8 @@ import { MapPin, Phone, Mail, Linkedin, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import emailjs from 'emailjs-com';
+import { toast } from 'sonner'; // Using sonner for toasts
 
 const contactDetails = [
   { icon: <MapPin size={20} className="text-primary" />, text: 'Bangalore, Karnataka, India', hrefType: null, href: null },
@@ -14,11 +16,24 @@ const contactDetails = [
   { icon: <Github size={20} className="text-primary" />, text: 'GitHub Profile', href: 'https://github.com/samaysusumanth', hrefType: 'github' },
 ];
 
+const SERVICE_ID = 'service_zdqibgf';
+const TEMPLATE_ID = 'template_iiysbnw';
+const PUBLIC_KEY = '_bXzx9yIjdCMXAVKY';
+
 const ContactSection = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert("Form submitted (placeholder - no actual submission yet)!");
-    (e.target as HTMLFormElement).reset();
+    const form = e.target as HTMLFormElement;
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form, PUBLIC_KEY)
+      .then((result) => {
+        console.log('EmailJS success:', result.text);
+        toast.success('Message sent successfully! I will get back to you soon.');
+        form.reset();
+      }, (error) => {
+        console.error('EmailJS error:', error.text);
+        toast.error('Failed to send message. Please try again later or contact me directly.');
+      });
   };
 
   return (
@@ -56,15 +71,36 @@ const ContactSection = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-1">Full Name</label>
-              <Input type="text" name="name" id="name" required className="w-full bg-card border-border text-foreground placeholder-slate-500 focus:ring-primary focus:border-primary rounded-md" placeholder="Your Name" />
+              <Input 
+                type="text" 
+                name="name" // This 'name' attribute must match your EmailJS template variable
+                id="name" 
+                required 
+                className="w-full bg-card border-border text-foreground placeholder-slate-500 focus:ring-primary focus:border-primary rounded-md" 
+                placeholder="Your Name" 
+              />
             </div>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-1">Email Address</label>
-              <Input type="email" name="email" id="email" required className="w-full bg-card border-border text-foreground placeholder-slate-500 focus:ring-primary focus:border-primary rounded-md" placeholder="your.email@example.com" />
+              <Input 
+                type="email" 
+                name="email" // This 'name' attribute must match your EmailJS template variable
+                id="email" 
+                required 
+                className="w-full bg-card border-border text-foreground placeholder-slate-500 focus:ring-primary focus:border-primary rounded-md" 
+                placeholder="your.email@example.com" 
+              />
             </div>
             <div>
               <label htmlFor="message" className="block text-sm font-medium text-muted-foreground mb-1">Message</label>
-              <Textarea name="message" id="message" rows={4} required className="w-full bg-card border-border text-foreground placeholder-slate-500 focus:ring-primary focus:border-primary rounded-md" placeholder="Your message..."></Textarea>
+              <Textarea 
+                name="message" // This 'name' attribute must match your EmailJS template variable
+                id="message" 
+                rows={4} 
+                required 
+                className="w-full bg-card border-border text-foreground placeholder-slate-500 focus:ring-primary focus:border-primary rounded-md" 
+                placeholder="Your message..."
+              />
             </div>
             <div>
               <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3">
